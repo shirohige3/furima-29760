@@ -26,7 +26,6 @@ Things you may want to cover:
 #テーブル設計
 
 ##users テーブル
-
 | Column           | Type       | Options          |
 | ---------------- | -----------| ---------------- |
 | nickname         | string     | null: false      |
@@ -38,8 +37,8 @@ Things you may want to cover:
 | family_name_kana | string     | null: false      |
 | birth_date       | date       | null: false      |
 ### Association
-- has_many :items
-- has_one  :item_customers
+- has_many  :items
+- has_many  :item_customers
 
 ##items テーブル
 | Column               | Type       | Options                        |
@@ -47,7 +46,6 @@ Things you may want to cover:
 | name                 | string     | null: false                    |
 | description          | text       | null: false                    |
 | price                | integer    | null: false                    |
-| image                | text       | null: false                    |
 | category_id          | integer    | null: false                    |
 | condition_id         | integer    | null: false                    |
 | shipping_fee_id      | integer    | null: false                    |
@@ -55,19 +53,19 @@ Things you may want to cover:
 | shipping_day_id      | integer    | null: false                    |
 | user                 | references | null: false, foreign_key: true |
 ### Association
-- belongs_to :user
-- has_one    :item_customers
+- belongs_to       :user
+- has_one          :item_customer
+- has_one_attached :image
 
 ##item_customers テーブル
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
 | user                 | references | null: false, foreign_key: true |
 | item                 | references | null: false, foreign_key: true |
-| sending_destination  | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :item
 - belongs_to :user
-- belongs_to :sending_destinations
+- has_one    :sending_destination
 
 
 ##sending_destinations テーブル
@@ -80,5 +78,6 @@ Things you may want to cover:
 | building_name        | string     | default: ""                    |
 | telephone_number     | string     | null: false                    |
 | user                 | references | null: false, foreign_key: true |
+| item                 | references | null: false, foreign_key: true |
 ### Association
-- has_one  :item_customers
+- belongs_to  :item_customer
