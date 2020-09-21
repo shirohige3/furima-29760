@@ -39,7 +39,7 @@ Things you may want to cover:
 | birth_date       | date       | null: false      |
 ### Association
 - has_many :items
-- has_one  :customer
+- has_one  :item_customers
 
 ##items テーブル
 | Column               | Type       | Options                        |
@@ -48,7 +48,7 @@ Things you may want to cover:
 | description          | text       | null: false                    |
 | price                | integer    | null: false                    |
 | image                | text       | null: false                    |
-| category             | string     | null: false                    |
+| category_id          | integer    | null: false                    |
 | condition_id         | integer    | null: false                    |
 | shipping_fee_id      | integer    | null: false                    |
 | ship_form_id         | integer    | null: false                    |
@@ -56,37 +56,29 @@ Things you may want to cover:
 | user                 | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :user
-- has_one    :customer
-- has_many   :item_customers
+- has_one    :item_customers
 
 ##item_customers テーブル
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
 | user                 | references | null: false, foreign_key: true |
 | item                 | references | null: false, foreign_key: true |
+| sending_destination  | references | null: false, foreign_key: true |
 ### Association
-- belongs_to item
-- belongs_to customer
+- belongs_to :item
+- belongs_to :user
+- belongs_to :sending_destinations
 
-##customers テーブル
-| Column         | Type         | Options                        |
-| -------------- | ------------ | ------------------------------ |
-| user           | references   | null: false, foreign_key: true |
-### Association
-- belongs_to  :user
-- belongs_to  :item
-- has_one     :sending_destinations
-- has_many    :item_users
 
 ##sending_destinations テーブル
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
 | postal_code          | string     | null: false                    |
-| prefecture           | string     | null: false                    |
+| prefecture_id        | integer    | null: false                    |
 | city                 | string     | null: false                    |
 | house_number         | string     | null: false                    |
 | building_name        | string     | default: ""                    |
 | telephone_number     | string     | null: false                    |
-| user_id              | references | null: false, foreign_key: true |
+| user                 | references | null: false, foreign_key: true |
 ### Association
-- belongs_to  :customer
+- has_one  :item_customers
