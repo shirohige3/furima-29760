@@ -77,7 +77,7 @@ Things you may want to cover:
 | house_number         | string     | null: false                    |
 | building_name        | string     | default: ""                    |
 | telephone_number     | string     | null: false                    |
-| user                 | references | null: false, foreign_key: true |
-| item                 | references | null: false, foreign_key: true |
+| item_customer        | references | null: false, foreign_key: true |
+
 ### Association
 - belongs_to  :item_customer
