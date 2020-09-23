@@ -7,6 +7,10 @@ class User < ApplicationRecord
          has_many :itemn_customers
          has_many :items, through:  :itemn_customers
 
+         validates :nickname, presence: true
+
+         validates :birth_date, presence: true
+
          validates :email, presence: true, format:{ with: /@+/, message: '@マークを含めたアドレスを入力してください' }
 
          validates :password, presence: true, format:{ with: /[a-z\d]{8,}/i, message: '半角英数字で６文字以上で入力してください' }
