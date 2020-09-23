@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
          validates :email, presence: true, format:{ with: /@+/, message: '@マークを含めたアドレスを入力してください' }
 
-         validates :password, presence: true, format:{ with: /[a-z\d]{8,}/i, message: '半角英数字で６文字以上で入力してください' }
+         validates :password, presence: true, format:{ with: /[a-z\d]{6,}/i, message: '半角英数字で６文字以上で入力してください' }
 
          with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: '全角文字で入力してください' } do
           validates :family_name
