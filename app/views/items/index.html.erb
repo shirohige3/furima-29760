@@ -185,16 +185,10 @@
 </div>
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
-   <%# <a href= user_session_path, Method: :GET > %>
-   <%# <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %> 
   <% if user_signed_in? %>
-    <a href="/items/new/">
-    <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-    </a>
+    <%= link_to image_tag('camera.png' , size: '185x50' ,class: "purchase-btn-icon"), new_item_path%>
      <% else %>
-     <a href="/users/sign_in">
-     <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-     </a>
+     <%= link_to image_tag('camera.png' , size: '185x50' ,class: "purchase-btn-icon"), user_session_path %>
      <% end %>
 </div>
 <%= render "shared/footer" %>
