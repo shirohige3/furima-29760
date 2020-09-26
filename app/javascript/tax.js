@@ -4,9 +4,9 @@ function priceCalc(){
   let profit = document.getElementById("profit");
   itemPrice.addEventListener("change",()=>{
     let priceValue = itemPrice.value;
-    let taxPrice = priceValue * 0.1
+    let taxPrice = Math.round(priceValue * 0.1)
     addTaxPrice.innerHTML = taxPrice
-    let gainPrice = priceValue * 1.1
+    let gainPrice = Math.round(priceValue - taxPrice)
     profit.innerHTML = gainPrice
    });
 };
