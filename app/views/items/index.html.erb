@@ -131,7 +131,7 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開 %>
-     <% if @item == nil %>
+     <% if @items.size > 0 %>
       <% @items.each do |item|%>
        <li class='list'>
         <%= link_to item_path(item.id) do %>
@@ -150,9 +150,9 @@
            </div>
           </div>
          </div>
-       </li>
         <% end %>
-      <% end %>
+       </li>
+      <%end%>
       <% else %>
        <%# 商品がない場合のダミー/商品がない時に表示 %>
        <li class='list'>
@@ -164,7 +164,14 @@
            </h3>
           <div class='item-price'>
             <span>99999999円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+           </div>
+          </div>
         <% end %>
+       </li>
      <% end %>
     </ul>
   </div>
