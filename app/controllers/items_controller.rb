@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       redirect_to root_path
     else
-      reder :show
+      render :show
     end
   end
 
