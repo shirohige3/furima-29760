@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "items#index"
 
   resources :users
-  resources :items
-  resources :send_destinations
-  
+  resources :items do
+    resources :send_destinations
+  end
 end
