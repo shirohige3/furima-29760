@@ -14,6 +14,7 @@ class SendDestinationsController < ApplicationController
   def create
     # binding.pry
     @senddestination = CustomerDestination.new(senddestination_params)
+    # binding.pry
     if @senddestination.valid?
       pay_item
     @senddestination.save
@@ -23,9 +24,11 @@ class SendDestinationsController < ApplicationController
     end
   end
 
+
+
   private
   def senddestination_params
-    params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number, :item_id, :item_customer_id, :token)
+    params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number, :item_id, :item_customer_id, :token).merge(user_id: current_user.id)
   end
 
   def move_to_action
