@@ -1,9 +1,11 @@
 class SendDestinationsController < ApplicationController
   before_action :set_action
-  before_action :move_to_routes, only: [:index, :create]
+  before_action :authenticate_user!
+  before_action :move_to_action, only: [:index, :create]
 
   def index
-    @senddestinations = CustomerDestination.new
+    @senddestination = CustomerDestination.new
+    # binding.pry
   end
   
   def new
@@ -26,15 +28,12 @@ class SendDestinationsController < ApplicationController
     params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number, :item_id, :item_customer_id, :token)
   end
 
-  def move_to_routes
-    if user_signed_in? && current_user.id != @item.user_id
-      render 'index'
-    elsif user_signed_in? && current_user.id == @item.user_id
+  def move_to_action
+    # binding.pry
+    if user_signed_in? && current_user.id == @item.user.id
        redirect_to root_path
-     else
-       redirect_to new_user_session_path
      end
-    end
+  end
 
       def set_action
         @item = Item.find(params[:item_id])
