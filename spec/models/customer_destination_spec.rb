@@ -66,6 +66,11 @@ RSpec.describe CustomerDestination, type: :model do
         @customerdestination.valid?
         expect(@customerdestination.errors.full_messages).to include("Telephone number can't be blank")
       end
+      it "telephone_numberが12桁以上だと購入できない" do
+        @customerdestination.telephone_number = "123456789101"
+        @customerdestination.valid?
+        expect(@customerdestination.errors.full_messages).to include('Telephone number is invalid')
+      end
       it 'telepone_numberに『-』が含まれていると購入できない' do
         @customerdestination.telephone_number = '090-111-111'
         @customerdestination.valid?
