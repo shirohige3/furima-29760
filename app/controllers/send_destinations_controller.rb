@@ -5,16 +5,14 @@ class SendDestinationsController < ApplicationController
 
   def index
     @senddestination = CustomerDestination.new
-    # binding.pry
   end
   
   def new
     @senddestination = CustomerDestination.new
   end
+
   def create
-    # binding.pry
     @senddestination = CustomerDestination.new(senddestination_params)
-    # binding.pry
     if @senddestination.valid?
       pay_item
     @senddestination.save
@@ -32,7 +30,6 @@ class SendDestinationsController < ApplicationController
   end
 
   def move_to_action
-    # binding.pry
     if user_signed_in? && current_user.id == @item.user.id
        redirect_to root_path
      end
