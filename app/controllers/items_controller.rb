@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_action, only:[:edit, :show, :destroy, :update]
-  before_action :move_to_index, only:[:edit]
-  before_action :buy_to_move, only:[:edit]
+  before_action :set_action, only: [:edit, :show, :destroy, :update]
+  before_action :move_to_index, only: [:edit]
+  before_action :buy_to_move, only: [:edit]
   def index
     @items = Item.includes(:user, :item_customer).order('created_at DESC')
   end
@@ -41,19 +41,16 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :image, :description, :price, :category_id, :condition_id, :shipping_fee_id, :ship_form_id, :shipping_day_id).merge(user_id: current_user.id)
   end
+
   def set_action
     @item = Item.find(params[:id])
   end
 
   def move_to_index
-    unless user_signed_in? 
-      redirect_to root_path
-    end
-   
+    redirect_to root_path unless user_signed_in?
   end
+
   def buy_to_move
-  if @item.user.id != current_user.id || @item.item_customer != nil
-    redirect_to root_path
-  end
+    redirect_to root_path if @item.user.id != current_user.id || !@item.item_customer.nil?
   end
 end

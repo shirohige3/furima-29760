@@ -4,12 +4,12 @@ FactoryBot.define do
     # cvc               { 123 }
     # exp_month         { 3 }
     # exp_year          { 23 }
-    token             { "card_token" }
-    postal_code       { "111-1111" }
-    prefecture_id     { "2" }
-    city              { "長崎市"}
-    house_number      { "式見" }
-    building_name     { "スターサイドビル" }
-    telephone_number  {Faker::Number.number(digits:11)}
+    token             { 'card_token' }
+    postal_code       { '111-1111' }
+    prefecture_id     { '2' }
+    city              { '長崎市' }
+    house_number      { '式見' }
+    building_name     { 'スターサイドビル' }
+    telephone_number  {Faker::Number.number(digits: 11)}
   end
 end
