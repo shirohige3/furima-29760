@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe CustomerDestination, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
   before do
     @customerdestination = FactoryBot.build(:customer_destination)
   end
@@ -31,6 +30,16 @@ RSpec.describe CustomerDestination, type: :model do
         @customerdestination.postal_code = ''
         @customerdestination.valid?
         expect(@customerdestination.errors.full_messages).to include("Postal code can't be blank")
+      end
+      it "postal_codeが3桁-4桁じゃないと購入できない" do
+        @customerdestination.postal_code = "12-12345"
+        @customerdestination.valid?
+        expect(@customerdestination.errors.full_messages).to include("Postal code is invalid")
+      end
+      it "postal_codeが4桁-3桁じゃ購入できない" do
+        @customerdestination.postal_code = "1234-567"
+        @customerdestination.valid?
+        expect(@customerdestination.errors.full_messages).to include("Postal code is invalid")
       end
       it 'postal_codeが全角だと購入できない' do
         @customerdestination.postal_code = '１１１-１１１１'
