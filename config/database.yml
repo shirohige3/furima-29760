@@ -19,36 +19,39 @@ default: &default
 
 development:
   <<: *default
-  database: furima_29760_development
+  base: furima_29760_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
+# Warning: The base defined as "test" will be erased and
+# re-generated from your development base when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: furima_29760_test
+  base: furima_29760_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
+# like your base password, in your source code. If your source code is
+# ever seen by anyone, they now have access to your base.
 #
 # Instead, provide the password as a unix environment variable when you boot
-# the app. Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
+# the app. Read https://guides.rubyonrails.org/configuring.html#configuring-a-base
 # for a full rundown on how to provide these environment variables in a
 # production deployment.
 #
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
 #
-#   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"
+#   BASE_URL="mysql2://myuser:mypass@localhost/somebase"
 #
-# You can use this database configuration with:
+# You can use this base configuration with:
 #
 #   production:
-#     url: <%= ENV['DATABASE_URL'] %>
+#     url: <%= ENV['BASE_URL'] %>
 #
 production:
   <<: *default
-  database: furima_29760_production
-  username: furima_29760
-  password: <%= ENV['FURIMA_29760_DATABASE_PASSWORD'] %>
+  base: furima_29760_production
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
+  # username: furima_29760
+  # password: <%= ENV['FURIMA_29760_BASE_PASSWORD'] %>
