@@ -64,5 +64,8 @@ gem 'active_hash'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
 group :production do
-  gem 'rails_12factor'
+  # 12factorはHerokuでアプリを動作させるためのgem。AWSで動かすようになったので一旦不要
+  # gem 'rails_12factor'
+  # unicornアプリケーションサーバ導入
+  gem 'unicorn', '5.4.1'
 end
